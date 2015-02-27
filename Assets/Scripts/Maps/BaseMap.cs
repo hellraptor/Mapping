@@ -5,41 +5,24 @@ namespace AssemblyCSharp
 {
     public class BaseMap
     {
-        class MapSize
-        {
-            float x;
-            float y;
-
-            public MapSize(float x, float y)
-            {
-                X = x;
-                Y = y;
-            }
-
-            public float X
-            {
-                get{ return x;}
-                set{ x = value;}
-            }
-
-            public float Y
-            {
-                get{ return y;}
-                set{ y = value;}
-            }                  
-        }
-
-        MapSize mapSize;
+        float x;
+        float y;
+        BaseMapView mapView;
        
         public BaseMap()
         {
-            mapSize = new MapSize(Constants.MAP_SIZE_X, Constants.MAP_SIZE_Y); 
+            x = Constants.MAP_SIZE_X;
+            y = Constants.MAP_SIZE_Y;
+          ///  mapView = new BaseMapView(x, y);
         }
 
         public BaseMap(float x, float y)
         {
-            mapSize = new MapSize(x, y);
+            this.x = x;
+            this.y = y;
+            //mapView = new BaseMapView(this.x, this.y);
         }
+
     }
 }
 

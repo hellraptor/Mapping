@@ -10,11 +10,10 @@
 using System;
 namespace AssemblyCSharp
 {
-    public class Constants
+    public static class Constants
     {
-        public Constants()
-        {
-        }
+        public const float MAP_SIZE_X = 100f;
+        public const float MAP_SIZE_Y = 100f;
     }
 }
 
