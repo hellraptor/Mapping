@@ -46,8 +46,10 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Barriers\Map.cs" />
      <Compile Include="Assets\Scripts\Barriers\MapController.cs" />
+     <Compile Include="Assets\Scripts\Helpers\Constants.cs" />
+     <Compile Include="Assets\Scripts\Maps\BaseMap.cs" />
+     <Compile Include="Assets\Scripts\Maps\BaseMapView.cs" />
      <Compile Include="Assets\Scripts\Robot\RobotController.cs" />
      <None Include="Assets\TestGit.txt" />
  <Reference Include="UnityEngine.UI">
