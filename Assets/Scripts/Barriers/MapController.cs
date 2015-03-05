@@ -10,6 +10,7 @@ using AssemblyCSharp;
 public class MapController : MonoBehaviour
 {
     public Transform someBarrier;
+    public Transform envoerment;
     public int  barrierCount = 10;
     public Vector2 mapSize = new Vector2(20, 20);
     // Use this for initialization
@@ -17,7 +18,8 @@ public class MapController : MonoBehaviour
     {
         for (int i=0; i<barrierCount; i++)
         {
-            Instantiate(someBarrier, new Vector3(Random.Range(-mapSize.x, mapSize.x), 0.5f, Random.Range(-mapSize.y, mapSize.y)), Quaternion.identity);
+            ((Transform) Instantiate(someBarrier, new Vector3(Random.Range(-mapSize.x, mapSize.x), 0.5f, Random.Range(-mapSize.y, mapSize.y)), Quaternion.identity)).SetParent(envoerment);
+
         }
     }
 }
