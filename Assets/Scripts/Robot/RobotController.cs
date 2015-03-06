@@ -21,7 +21,7 @@ public class RobotController : MonoBehaviour
 
 				UpdateRobotDirection ();
 				UpdateRobotPosition ();
-				UpdateGameTextInfo (rotationAngle, 0f);
+				//UpdateGameTextInfo (rotationAngle, 0f);
 						
 		}
 
