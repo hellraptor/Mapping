@@ -46,11 +46,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Barriers\Barrier.cs" />
-     <Compile Include="Assets\Scripts\Barriers\MapController.cs" />
+     <Compile Include="Assets\Scripts\Environment\EnvironmentController.cs" />
      <Compile Include="Assets\Scripts\Helpers\Constants.cs" />
-     <Compile Include="Assets\Scripts\Maps\BaseMap.cs" />
-     <Compile Include="Assets\Scripts\Maps\BaseMapView.cs" />
+     <Compile Include="Assets\Scripts\Maps\BinaryMap.cs" />
      <Compile Include="Assets\Scripts\Robot\RobotController.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.3/UnityEngine.UI.dll</HintPath>
