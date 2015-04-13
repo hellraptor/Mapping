@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using AssemblyCSharp;
 
 
 public class RobotController : MonoBehaviour
@@ -11,23 +12,25 @@ public class RobotController : MonoBehaviour
     public float moveSpeed = 1;
     public Vector3 position;
     public Transform map;
+    public Transform mapContainer;
     public Transform point;
     string collisionCount = "";
-    HashSet<ContactPoint> pointsCloud;
+    List<ContactPoint> pointsCloud;
+    public List<Cell> cells;
 
     void Start()
     {
         textInfo.text = "Velcome. Info about will bee heare:";
         position = new Vector3(0, 0.5f, 0);
-        pointsCloud = new HashSet<ContactPoint>();
-
+        pointsCloud = new List<ContactPoint>();
     }
 
     void FixedUpdate()
     {
         UpdateRobotDirection();
         UpdateRobotPosition();
-        UpdateGameTextInfo(rotationAngle, 0f);                  
+        UpdateGameTextInfo(rotationAngle, 0f);     
+        UpdateMap();
     }
 
     void UpdateRobotDirection()
@@ -37,6 +40,19 @@ public class RobotController : MonoBehaviour
         rotationAngle += Input.GetAxisRaw("Horizontal") * rotationSpeed;
         Quaternion target = Quaternion.Euler(0, rotationAngle, 90);
         transform.rotation = target;
+    }
+
+    void UpdateMap(){
+        cells =  ConvertPointsCloudToCells();
+    }
+
+    List<Cell> ConvertPointsCloudToCells()
+    {
+        List<Cell> temp = new List<Cell>();
+        foreach(ContactPoint point in pointsCloud ){           
+            temp.Add(new Cell(Mathf.CeilToInt(point.point.x),Mathf.CeilToInt(point.point.z)));
+        }
+        return  temp;
     }
 
     /**
@@ -69,7 +85,11 @@ public class RobotController : MonoBehaviour
         textInfo.text += "\nX: " + transform.position.x;    
         textInfo.text += "\nZ: " + transform.position.z;  
         textInfo.text += "\nCollision point: " + collisionCount;  
+    }
 
+    void initializeMap(Transform map)
+    {
+        map.SetParent(Instantiate(mapContainer));
     }
 }
 
