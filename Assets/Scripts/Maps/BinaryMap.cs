@@ -3,14 +3,14 @@ using System.Collections;
 
 public class BinaryMap : MonoBehaviour {
 
-    public RectTransform cell;
-    public RectTransform mapPanel;
+    public Transform cell;
+    public Transform mapPanel;
 	// Use this for initialization
-	void Start () {        
-        for (int i=0; i<10; i++)
-        {
-            ((RectTransform)Instantiate(cell,  new Vector3(i * 2f, 50, 0) , Quaternion.identity)).SetParent(this.transform);            
-        }	
+	void Start () { 
+        Transform a = (Transform)Instantiate(mapPanel);
+        a.SetParent(this.transform);   
+        a.transform.position = new Vector3(0,0,0);
+
 	}
 	
 	// Update is called once per frame
