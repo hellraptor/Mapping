@@ -11,12 +11,11 @@ public class RobotController : MonoBehaviour
     public float rotationSpeed = 1;
     public float moveSpeed = 1;
     public Vector3 position;
-    public Transform map;
+    public BinaryMap map;
     public Transform mapContainer;
     public Transform point;
     string collisionCount = "";
     List<ContactPoint> pointsCloud;
-    public List<Cell> cells;
 
     void Start()
     {
@@ -29,8 +28,7 @@ public class RobotController : MonoBehaviour
     {
         UpdateRobotDirection();
         UpdateRobotPosition();
-        UpdateGameTextInfo(rotationAngle, 0f);     
-        UpdateMap();
+        UpdateGameTextInfo(rotationAngle, 0f);
     }
 
     void UpdateRobotDirection()
@@ -42,19 +40,6 @@ public class RobotController : MonoBehaviour
         transform.rotation = target;
     }
 
-    void UpdateMap(){
-        cells =  ConvertPointsCloudToCells();
-    }
-
-    List<Cell> ConvertPointsCloudToCells()
-    {
-        List<Cell> temp = new List<Cell>();
-        foreach(ContactPoint point in pointsCloud ){           
-            temp.Add(new Cell(Mathf.CeilToInt(point.point.x),Mathf.CeilToInt(point.point.z)));
-        }
-        return  temp;
-    }
-
     /**
      * 
      * calls on every collision robot with somthing
@@ -63,9 +48,11 @@ public class RobotController : MonoBehaviour
     */
     void OnCollisionEnter(Collision collision)
     {
-        ContactPoint contact = collision.contacts [0];   
+        ContactPoint contact = collision.contacts[0];
         pointsCloud.Add(contact);
         collisionCount = pointsCloud.Count().ToString();
+        map.AddCell(new Cell(Mathf.CeilToInt(contact.point.x), Mathf.CeilToInt(contact.point.z)));
+
     }
 
     void UpdateRobotPosition()
@@ -79,12 +66,12 @@ public class RobotController : MonoBehaviour
     void UpdateGameTextInfo(float angle, float offset)
     {
         textInfo.text = "";
-        textInfo.text += "\nRotation Angle: " + angle.ToString();               
-        textInfo.text += "\nPosition: " + position.ToString();  
-        textInfo.text += "\nOffset: " + offset.ToString();  
-        textInfo.text += "\nX: " + transform.position.x;    
-        textInfo.text += "\nZ: " + transform.position.z;  
-        textInfo.text += "\nCollision point: " + collisionCount;  
+        textInfo.text += "\nRotation Angle: " + angle.ToString();
+        textInfo.text += "\nPosition: " + position.ToString();
+        textInfo.text += "\nOffset: " + offset.ToString();
+        textInfo.text += "\nX: " + transform.position.x;
+        textInfo.text += "\nZ: " + transform.position.z;
+        textInfo.text += "\nCollision point: " + collisionCount;
     }
 
     void initializeMap(Transform map)

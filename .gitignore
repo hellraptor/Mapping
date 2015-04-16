@@ -1,3 +1,5 @@
+*.sln
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
@@ -44,3 +46,5 @@ Temporary Items
 /Library
 /Temp
 *.csproj
+*/obj/Debug/
+*/Release/
