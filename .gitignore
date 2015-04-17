@@ -1,4 +1,5 @@
 *.sln
+*obj/Debug/
 
 # Windows image file caches
 Thumbs.db

@@ -17,7 +17,6 @@ public class EnvironmentController : MonoBehaviour
                                      new Vector3(Random.Range(-mapSize.x, mapSize.x), 0.5f,
                         Random.Range(-mapSize.y, mapSize.y)), Quaternion.identity))
                 .SetParent(this.transform);
-
         }
     }
 

@@ -14,7 +14,6 @@ public class BinaryMap : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -27,6 +26,5 @@ public class BinaryMap : MonoBehaviour
         cells.Add(cell);
         Transform cellObject = (Transform)Instantiate(_cell, camera.position - new Vector3(0, 16, 0) + new Vector3(cell.x, 0, cell.y), Quaternion.identity);
         cellObject.SetParent(mapPanel.transform);
-
     }
 }
