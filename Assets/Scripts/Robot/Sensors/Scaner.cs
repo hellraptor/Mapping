@@ -10,28 +10,29 @@ public class Scaner : MonoBehaviour
     public float detectionDistance;
     public Transform rayPattern;
 
-    // Use this for initialization
     void Start()
     {
         rayCount = (int)(viewingAngle / resolution);
-        //for (int i = 0; i < rayCount; i++)
-        //{
-        //    float rayDirection = (-viewingAngle * 0.5f) + (i * resolution);
-        //    Transform ray = (Transform)Instantiate(rayPattern, transform.position, Quaternion.Euler(rayDirection, 0f, 0f));
-        //    ray.SetParent(transform);
-        //    ray.localScale = Vector3.one;
-        //}
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Vector3 fwd = transform.TransformDirection(Vector3.forward);
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, fwd, out hit, 10))
+        Vector3 fwd;
+        for (float i = (-viewingAngle * 0.5f); i < (viewingAngle * 0.5); i += resolution)
         {
-            Debug.DrawLine(transform.position, hit.point);
+            fwd = calculateDirection(i);
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, fwd, out hit, 10))
+            {
+                Debug.DrawLine(transform.position, hit.point);
+            }
         }
+    }
+
+    private Vector3 calculateDirection(float angle)
+    {
+        Vector3 fwd = Quaternion.AngleAxis(angle, Vector3.up) * transform.TransformDirection(Vector3.forward);
+        return fwd;
     }
 }
 

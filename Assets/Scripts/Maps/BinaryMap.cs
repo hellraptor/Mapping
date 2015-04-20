@@ -10,13 +10,11 @@ public class BinaryMap : MonoBehaviour
     public Transform mapPanel;
     public Transform camera;
     public List<Cell> cells = new List<Cell>();
-    private Transform a;
-    // Use this for initialization
+
     void Start()
     {
     }
 
-    // Update is called once per frame
     void Update()
     {
     }
