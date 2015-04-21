@@ -15,13 +15,13 @@ public class RobotController : MonoBehaviour
     public Transform mapContainer;
     public Transform point;
     string collisionCount = "";
-    List<ContactPoint> pointsCloud;
+    List<Vector3> pointsCloud;
 
     void Start()
     {
         textInfo.text = "Velcome. Info about will bee heare:";
         position = new Vector3(0, 0.5f, 0);
-        pointsCloud = new List<ContactPoint>();
+        pointsCloud = new List<Vector3>();
     }
 
     void FixedUpdate()
@@ -29,6 +29,12 @@ public class RobotController : MonoBehaviour
         UpdateRobotDirection();
         UpdateRobotPosition();
         UpdateGameTextInfo(rotationAngle, 0f);
+        TranslatePointsCloudToCell();
+    }
+
+    private void TranslatePointsCloudToCell()
+    {
+        throw new System.NotImplementedException();
     }
 
     void UpdateRobotDirection()
@@ -48,11 +54,22 @@ public class RobotController : MonoBehaviour
     */
     void OnCollisionEnter(Collision collision)
     {
-        ContactPoint contact = collision.contacts[0];
-        pointsCloud.Add(contact);
-        collisionCount = pointsCloud.Count().ToString();
-        map.AddCell(new Cell(Mathf.CeilToInt(contact.point.x), Mathf.CeilToInt(contact.point.z)));
+      
+    }
 
+
+    //дебильно 
+    //медленно
+    //плохо
+    public void mergeCloud(List<Vector3> cloud)
+    {
+        foreach (Vector3 point in cloud)
+        {
+            if (!pointsCloud.Contains(point))
+            {
+                pointsCloud.Add(point);
+            }
+        }
     }
 
     void UpdateRobotPosition()
