@@ -11,7 +11,8 @@ public class Scaner : MonoBehaviour
     int rayCount;
     public float detectionDistance;
     public Transform rayPattern;
-    List<Vector3> pointCloud;
+    List<Vector3> pointsCloud;
+    public GameObject map;
     
 
     void Start()
@@ -21,24 +22,31 @@ public class Scaner : MonoBehaviour
 
     void Update()
     {
-        pointCloud = new List<Vector3>();
+        List <Vector3> pointsCloud = Scan();
+        ((BinaryMap)map.GetComponent("BinaryMap")).updateMap(pointsCloud);       
+    }
+
+    List<Vector3> Scan()
+    {
+        pointsCloud = new List<Vector3>();
         Vector3 fwd;
         for (float i = (-viewingAngle * 0.5f); i < (viewingAngle * 0.5); i += resolution)
         {
             fwd = calculateDirection(i);
-            RaycastHit hit =new RaycastHit();
+            RaycastHit hit = new RaycastHit();
             if (Physics.Raycast(transform.position, fwd, out hit, 10))
             {
                 Debug.DrawLine(transform.position, hit.point);
-                if (!pointCloud.Contains(hit.point))
+                if (!pointsCloud.Contains(hit.point))
                 {
-                    pointCloud.Add(hit.point);
+                    pointsCloud.Add(hit.point);
                 }
-            }                        
+            }
         }
-        
-        ((RobotController)transform.parent.GetComponent("RobotController")).mergeCloud(pointCloud);
+        return pointsCloud;
     }
+
+   
 
     private Vector3 calculateDirection(float angle)
     {

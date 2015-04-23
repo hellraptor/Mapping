@@ -28,13 +28,12 @@ public class RobotController : MonoBehaviour
     {
         UpdateRobotDirection();
         UpdateRobotPosition();
-        UpdateGameTextInfo(rotationAngle, 0f);
-        TranslatePointsCloudToCell();
+        UpdateGameTextInfo(rotationAngle, 0f);        
     }
 
     private void TranslatePointsCloudToCell()
     {
-        throw new System.NotImplementedException();
+     
     }
 
     void UpdateRobotDirection()
@@ -57,20 +56,6 @@ public class RobotController : MonoBehaviour
       
     }
 
-
-    //дебильно 
-    //медленно
-    //плохо
-    public void mergeCloud(List<Vector3> cloud)
-    {
-        foreach (Vector3 point in cloud)
-        {
-            if (!pointsCloud.Contains(point))
-            {
-                pointsCloud.Add(point);
-            }
-        }
-    }
 
     void UpdateRobotPosition()
     {
