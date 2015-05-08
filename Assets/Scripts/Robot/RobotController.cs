@@ -22,7 +22,7 @@ public class RobotController : MonoBehaviour
         textInfo.text = "Velcome. Info about will bee heare:";
         position = new Vector3(0, 0.5f, 0);
         pointsCloud = new List<Vector3>();
-    }
+    }    
 
     void FixedUpdate()
     {

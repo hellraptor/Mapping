@@ -26,6 +26,14 @@ public class Scaner : MonoBehaviour
         ((BinaryMap)map.GetComponent("BinaryMap")).updateMap(pointsCloud);       
     }
 
+    void OnGUI()
+    {
+        if (GUI.changed)
+        {
+            Debug.Log("KPKPKPKK");
+        }
+    }
+
     List<Vector3> Scan()
     {
         pointsCloud = new List<Vector3>();
@@ -34,7 +42,7 @@ public class Scaner : MonoBehaviour
         {
             fwd = calculateDirection(i);
             RaycastHit hit = new RaycastHit();
-            if (Physics.Raycast(transform.position, fwd, out hit, 10))
+            if (Physics.Raycast(transform.position, fwd, out hit, detectionDistance))
             {
                 Debug.DrawLine(transform.position, hit.point);
                 if (!pointsCloud.Contains(hit.point))
